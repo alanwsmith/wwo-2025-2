@@ -1,4 +1,8 @@
+let hoist;
+
 const s = {
+  pickedState: "",
+
   names: {
     "Alabama": "Alabama0000000",
     "Alaska": "Alaska00000000",
@@ -53,7 +57,8 @@ const s = {
   },
 };
 
-function getClosest(stateName) {
+function updateClosest(stateName) {
+  s.pickedState = stateName;
   let distance = 100;
   let neighbors = [];
   const aLetters = stateName.split("").map((l) => l.toLowerCase());
@@ -93,6 +98,7 @@ function getClosest(stateName) {
 export default class {
   bittyInit() {
     document.documentElement.style.setProperty("--page-visibility", "visible");
+    hoist = this;
   }
 
   async init(_event, _el) {
@@ -103,6 +109,10 @@ export default class {
       s.data = await response.json();
       this.makeMap();
     }
+  }
+
+  pickedState(_event, el) {
+    el.innerHTML = s.pickedState;
   }
 
   makeMap() {
@@ -157,9 +167,11 @@ export default class {
 
     function clicked(event, d) {
       const [[x0, y0], [x1, y1]] = path.bounds(d);
-      event.stopPropagation();
       const stateName = event.target.__data__.properties.name;
-      getClosest(stateName);
+      updateClosest(stateName);
+      hoist.api.forward(event, "pickedState");
+
+      event.stopPropagation();
       // console.log(stateName);
       // console.log(s.keys[stateName]);
 
