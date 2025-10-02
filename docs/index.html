@@ -1398,6 +1398,11 @@ video {
   color: var(--default-faded);
 }
 
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
     </style>
 
   </head>
@@ -1419,11 +1424,12 @@ video {
           Some features will not work without it. 
         </noscript>
 <h4>Nearest (letter) Neighbors</h4>
-<ul data-receive="neighbors">
-  <li>Click a state</li>
-</ul>
-
-<div id="container"></div>
+<div class="two-columns">
+  <ul data-receive="neighbors" class="small-font">
+    <li>Click a state</li>
+  </ul>
+  <div id="container"></div>
+</div>
 
       </main>
 
@@ -1432,7 +1438,8 @@ video {
           made by <a href="https://www.alanwsmith.com/">alan w smith</a> ~
           <a href="https://wwo-2025-0.alanwsmith.com/">details</a> ~
           <a href="https://socials.alanwsmith.com/">socials</a> ~
-          <a href="https://links.alanwsmith.com/">other projects</a>
+          <a href="https://links.alanwsmith.com/">other projects</a> ~
+          <a href="https://www.alanwsmith.com/feeds/posts.xml">rss</a>
         </div>
       </footer>
     </bitty-v1-rc5>

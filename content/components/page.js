@@ -131,16 +131,16 @@ export default class {
     const width = 975;
     const height = 610;
 
-    const zoom = d3.zoom()
-      .scaleExtent([1, 8])
-      .on("zoom", zoomed);
+    // const zoom = d3.zoom()
+    //   .scaleExtent([1, 8])
+    //   .on("zoom", zoomed);
 
     const svg = d3.create("svg")
       .attr("viewBox", [0, 0, width, height])
       .attr("width", width)
       .attr("height", height)
-      .attr("style", "max-width: 100%; height: auto;")
-      .on("click", reset);
+      .attr("style", "max-width: 100%; height: auto;");
+    //  .on("click", reset);
 
     const path = d3.geoPath();
 
@@ -164,16 +164,16 @@ export default class {
       .attr("stroke-linejoin", "round")
       .attr("d", path(topojson.mesh(us, us.objects.states, (a, b) => a !== b)));
 
-    svg.call(zoom);
+    // svg.call(zoom);
 
-    function reset() {
-      states.transition().style("fill", null);
-      svg.transition().duration(750).call(
-        zoom.transform,
-        d3.zoomIdentity,
-        d3.zoomTransform(svg.node()).invert([width / 2, height / 2]),
-      );
-    }
+    // function reset() {
+    //   states.transition().style("fill", null);
+    //   svg.transition().duration(750).call(
+    //     zoom.transform,
+    //     d3.zoomIdentity,
+    //     d3.zoomTransform(svg.node()).invert([width / 2, height / 2]),
+    //   );
+    // }
 
     function clicked(event, d) {
       const [[x0, y0], [x1, y1]] = path.bounds(d);
@@ -203,11 +203,11 @@ export default class {
       */
     }
 
-    function zoomed(event) {
-      const { transform } = event;
-      g.attr("transform", transform);
-      g.attr("stroke-width", 1 / transform.k);
-    }
+    // function zoomed(event) {
+    //   const { transform } = event;
+    //   g.attr("transform", transform);
+    //   g.attr("stroke-width", 1 / transform.k);
+    // }
 
     container.append(svg.node());
   }
