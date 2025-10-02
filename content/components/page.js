@@ -1,8 +1,8 @@
 let hoist;
 
 const s = {
-  pickedState: "",
-
+  pickedState: null,
+  distance: null,
   names: {
     "Alabama": "Alabama0000000",
     "Alaska": "Alaska00000000",
@@ -57,10 +57,22 @@ const s = {
   },
 };
 
+function getSpans(a, b) {
+  const aLetters = a.split("");
+  const bLetters = b.split("").map((l) => l.toLowerCase());
+  return aLetters.map((l) => {
+    if (bLetters.includes(l.toLowerCase())) {
+      return `<span class="reverse">${l}</span>`;
+    } else {
+      return l;
+    }
+  }).join("");
+}
+
 function updateClosest(stateName) {
   s.pickedState = stateName;
-  let distance = 100;
-  let neighbors = [];
+  s.distance = 100;
+  s.neighbors = [];
   const aLetters = stateName.split("").map((l) => l.toLowerCase());
   Object.entries(s.names).forEach(([name, token]) => {
     if (stateName !== name) {
@@ -71,29 +83,17 @@ function updateClosest(stateName) {
           checkCount += 1;
         }
       });
-      if (checkCount < distance) {
-        distance = checkCount;
-        neighbors = [name];
-      } else if (checkCount === distance) {
-        neighbors.push(name);
+      if (checkCount < s.distance) {
+        s.distance = checkCount;
+        s.neighbors = [name];
+      } else if (checkCount === s.distance) {
+        s.neighbors.push(name);
       }
     }
   });
-  console.log(neighbors);
-  console.log(distance);
+  console.log(s.neighbors);
+  console.log(s.distance);
 }
-
-// function hammingDistance(a, b) {
-//   let counter = 1;
-//   for (let i = 0; i < 14; i += 1) {
-//     let aCheck = a.substring(i, i + 1);
-//     let bCheck = b.substring(i, i + 1);
-//     if (aCheck !== bCheck) {
-//       counter += 1;
-//     }
-//   }
-//   return counter;
-// }
 
 export default class {
   bittyInit() {
@@ -111,8 +111,14 @@ export default class {
     }
   }
 
-  pickedState(_event, el) {
-    el.innerHTML = s.pickedState;
+  neighbors(_event, el) {
+    el.innerHTML = "";
+    s.neighbors.forEach((neighbor) => {
+      const li = document.createElement("li");
+      const spans1 = getSpans(s.pickedState, neighbor);
+      li.innerHTML = `${spans1}`;
+      el.appendChild(li);
+    });
   }
 
   makeMap() {
@@ -169,7 +175,7 @@ export default class {
       const [[x0, y0], [x1, y1]] = path.bounds(d);
       const stateName = event.target.__data__.properties.name;
       updateClosest(stateName);
-      hoist.api.forward(event, "pickedState");
+      hoist.api.forward(event, "neighbors");
 
       event.stopPropagation();
       // console.log(stateName);
