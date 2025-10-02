@@ -62,9 +62,9 @@ function getSpans(a, b) {
   const bLetters = b.split("").map((l) => l.toLowerCase());
   return aLetters.map((l) => {
     if (bLetters.includes(l.toLowerCase())) {
-      return `<span class="reverse">${l}</span>`;
+      return `<span class="hit">${l}</span>`;
     } else {
-      return l;
+      return `<span class="miss">${l}</span>`;
     }
   }).join("");
 }
@@ -113,10 +113,14 @@ export default class {
 
   neighbors(_event, el) {
     el.innerHTML = "";
+    const liOff = document.createElement("li");
+    liOff.innerHTML = `Off by: ${s.distance}`;
+    el.appendChild(liOff);
     s.neighbors.forEach((neighbor) => {
       const li = document.createElement("li");
       const spans1 = getSpans(s.pickedState, neighbor);
-      li.innerHTML = `${spans1}`;
+      const spans2 = getSpans(neighbor, s.pickedState);
+      li.innerHTML = `${spans1}<br />${spans2}`;
       el.appendChild(li);
     });
   }
