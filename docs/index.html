@@ -1,50 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Maps - Day 1 - Weird Web October 2025</title>
+    <meta property="og:title" content="Maps - Day 1 - Weird Web October 2025" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>Alan's Weird Web October Day 0</title>
-<meta property="og:title" content="Alan's Weird Web October Day 0" />
-
-<link rel="shortcut icon" href="/favicon.ico" />
-
-<meta name="description" content="" />
-<meta
-  property="og:description"
-  content=""
-/>
-
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://wwo-2025-0.alanwsmith.com/" />
-<meta
-  property="og:image"
-  content="https://res.cloudinary.com/awsimages/image/upload/c_fit,co_rgb:ffffff,l_text:Aldrich_42_bold:0/fl_layer_apply,g_north_west,x_230,y_488/wwo-2025-base-og-image_tumugk.png"
-/>
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="675" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://res.cloudinary.com/awsimages/image/upload/c_fit,co_rgb:ffffff,l_text:Aldrich_42_bold:0/fl_layer_apply,g_north_west,x_230,y_488/wwo-2025-base-og-image_tumugk.png">
-
-<link
-  rel="apple-touch-icon"
-  sizes="180x180"
-  href="/favicons/apple-touch-icon.png"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  sizes="16x16"
-  href="/favicons/favicon-16x16.png"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  sizes="32x32"
-  href="/favicons/favicon-32x32.png"
-/>
-<link rel="manifest" href="/favicons/site.webmanifest" />
-<link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="description" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wwo-2025-1.alanwsmith.com/" />
+    <meta property="og:image" content="https://res.cloudinary.com/awsimages/image/upload/c_fit,co_rgb:ffffff,l_text:Aldrich_42_bold:1/fl_layer_apply,g_north_west,x_230,y_488/wwo-2025-base-og-image_tumugk.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://res.cloudinary.com/awsimages/image/upload/c_fit,co_rgb:ffffff,l_text:Aldrich_42_bold:1/fl_layer_apply,g_north_west,x_230,y_488/wwo-2025-base-og-image_tumugk.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+    <link rel="manifest" href="/favicons/site.webmanifest" />
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+    <script src="/scripts/d3/d3.v7.min.js"></script>
+    <script src="/scripts/topojson/topojson-3.0.2.min.js"></script>
 
 <style>
 :root {
@@ -482,7 +459,9 @@ iframe,
 img,
 map,
 object,
+/*
 svg,
+*/
 video {
   display: block;
 }
@@ -1238,7 +1217,6 @@ iframe {
 }
 img {
   max-width: 100%;
-  border: var(--accent-border);
 }
 input {
   margin: var(--xxxsmall-margin);
@@ -1268,6 +1246,7 @@ main {
   margin-inline: auto;
   width: var(--default-width);
 }
+
 main > :where(:not(:first-child)) {
   margin-top: var(--flow-space, var(--default-flow));
 }
@@ -1347,9 +1326,11 @@ summary {
 sup {
   /* */
 }
+/*
 svg {
   max-width: 100%;
 }
+*/
 table {
   margin: var(--default-margin);
 }
@@ -1390,63 +1371,48 @@ video {
   max-width: 100%;
 }
     
-
-.page-wrapper {
-  min-height: 100vh;
-  min-height: 100dvh;
+.content-wrapper {
   display: grid;
   grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+:root {
+  --page-visibility: hidden;
+}
+
+.page {
+  visibility: var(--page-visibility);
 }
 
     </style>
+
   </head>
-  <body>
-    <bitty-v1-rc5 data-connect="/components/page.js" class="page-wrapper">
+  <body class="page">
+
+    <bitty-v1-rc5 data-connect="/components/page.js" class="content-wrapper" data-send="init">
       <header class="default-wrapper xlarge-bottom-margin">
-        <h1>Weird Web October - Day 0</h1>
+        <h1>Weird Web October<br />Day 1 - Maps</h1>
         <div class="day_nav small-font accent-bottom-border">
+          <a href="https://wwo-2025-0.alanwsmith.com/">Details</a> - 
           Day: 
-              0
-              <a href="https://wwo-2025-1.alanwsmith.com/">1</a>
+              1
               <a href="https://wwo-2025-2.alanwsmith.com/">2</a>
-              <a href="https://wwo-2025-3.alanwsmith.com/">3</a>
-              <a href="https://wwo-2025-4.alanwsmith.com/">4</a>
-              <a href="https://wwo-2025-5.alanwsmith.com/">5</a>
-              <a href="https://wwo-2025-6.alanwsmith.com/">6</a>
-              <a href="https://wwo-2025-7.alanwsmith.com/">7</a>
-              <a href="https://wwo-2025-8.alanwsmith.com/">8</a>
-              <a href="https://wwo-2025-9.alanwsmith.com/">9</a>
-              <a href="https://wwo-2025-10.alanwsmith.com/">10</a>
-              <a href="https://wwo-2025-11.alanwsmith.com/">11</a>
-              <a href="https://wwo-2025-12.alanwsmith.com/">12</a>
-              <a href="https://wwo-2025-13.alanwsmith.com/">13</a>
-              <a href="https://wwo-2025-14.alanwsmith.com/">14</a>
-              <a href="https://wwo-2025-15.alanwsmith.com/">15</a>
-              <a href="https://wwo-2025-16.alanwsmith.com/">16</a>
-              <a href="https://wwo-2025-17.alanwsmith.com/">17</a>
-              <a href="https://wwo-2025-18.alanwsmith.com/">18</a>
-              <a href="https://wwo-2025-19.alanwsmith.com/">19</a>
-              <a href="https://wwo-2025-20.alanwsmith.com/">20</a>
-              <a href="https://wwo-2025-21.alanwsmith.com/">21</a>
-              <a href="https://wwo-2025-22.alanwsmith.com/">22</a>
-              <a href="https://wwo-2025-23.alanwsmith.com/">23</a>
-              <a href="https://wwo-2025-24.alanwsmith.com/">24</a>
-              <a href="https://wwo-2025-25.alanwsmith.com/">25</a>
-              <a href="https://wwo-2025-26.alanwsmith.com/">26</a>
-              <a href="https://wwo-2025-27.alanwsmith.com/">27</a>
-              <a href="https://wwo-2025-28.alanwsmith.com/">28</a>
-              <a href="https://wwo-2025-29.alanwsmith.com/">29</a>
-              <a href="https://wwo-2025-30.alanwsmith.com/">30</a>
-              <a href="https://wwo-2025-31.alanwsmith.com/">31</a>
         </div>
       </header>
-<main class="default-wrapper">
-  <p>
-    This is a placeholder for day 0
-    of <a href="https://weirdweboctober.website/">Weird Web October 2025</a>. 
-  </p>
-</main>
+      <main class="default-wrapper">
+        <noscript>
+          This sites uses JavaScript which appears to be off.
+          Some features will not work without it. 
+        </noscript>
+<div id="container"></div>
+<p>
+  This is a placeholder for day 1
+  of <a href="https://weirdweboctober.website/">Weird Web October 2025</a> - Maps 
+</p>
 
+      </main>
 
       <footer>
         <div class="small-font">
@@ -1459,5 +1425,16 @@ video {
     </bitty-v1-rc5>
 
     <script src="/components/bitty-1.0.0-rc5.full.js" type="module"></script>
+    <script>
+      setTimeout(() => { 
+        document.documentElement.style.setProperty("--page-visibility", "visible");
+      }, 1800);
+    </script>
+    <noscript>
+      <style>
+      :root { --page-visibility: visible; }
+      </style>
+    </noscript>
   </body>
 </html>
+
