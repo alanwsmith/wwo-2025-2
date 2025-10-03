@@ -114,7 +114,11 @@ export default class {
   neighbors(_event, el) {
     el.innerHTML = "";
     const liOff = document.createElement("li");
-    liOff.innerHTML = `Off by: ${s.distance}`;
+    if (s.distance === 0) {
+      liOff.innerHTML = `Nailed it`;
+    } else {
+      liOff.innerHTML = `Off by: ${s.distance}`;
+    }
     el.appendChild(liOff);
     s.neighbors.forEach((neighbor) => {
       const li = document.createElement("li");
