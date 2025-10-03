@@ -1,3 +1,16 @@
+/*
+ * Hey there. Thanks for taking a look at the
+ * code. It's kinda a mess. If this was a
+ * longer term project I'd clean it up but
+ * for a one off, one-day built site where
+ * I can keep all the context in my head
+ * I'm cool with things being all over the
+ * place. So, be prepared for some cruft
+ * and nonsense.
+ *
+ * -a
+ */
+
 let hoist;
 
 const s = {
@@ -69,6 +82,29 @@ function getSpans(a, b) {
   }).join("");
 }
 
+function getSpans2(a, b) {
+  const aLetters = a.split("");
+  const bLetters = b.split("").map((l) => l.toLowerCase());
+  return aLetters.map((l) => {
+    if (bLetters.includes(l.toLowerCase())) {
+      return `<span class="hit-neighbor">${l}</span>`;
+    } else {
+      return `<span>${l}</span>`;
+    }
+  }).join("");
+}
+
+function formatText(input) {
+  if (input.length === 1) {
+    return input[0];
+  } else if (input.length === 2) {
+    return `${input[0]} and ${input[1]}`;
+  } else {
+    const lastItem = input.pop();
+    return `${input.join(", ")}, and ${lastItem}`;
+  }
+}
+
 function updateClosest(stateName) {
   s.pickedState = stateName;
   s.distance = 100;
@@ -95,6 +131,18 @@ function updateClosest(stateName) {
   console.log(s.distance);
 }
 
+function missingLetters(a, b) {
+  const set = new Set();
+  const aLetters = a.split("");
+  const bLetters = b.split("").map((l) => l.toLowerCase());
+  aLetters.forEach((l) => {
+    if (!bLetters.includes(l.toLowerCase())) {
+      set.add(l.toUpperCase());
+    }
+  });
+  return [...set];
+}
+
 export default class {
   bittyInit() {
     document.documentElement.style.setProperty("--page-visibility", "visible");
@@ -111,12 +159,10 @@ export default class {
     }
   }
 
-  count(_event, el) {
-    if (s.distance === 1) {
-      el.innerHTML = `${s.distance} Missing Letter`;
-    } else {
-      el.innerHTML = `${s.distance} Missing Letters`;
-    }
+  pick(_event, el) {
+    el.innerHTML = `You picked: ${s.pickedState}<br />
+The states with the most matching letters are:
+    `;
   }
 
   neighbors(_event, el) {
@@ -124,11 +170,18 @@ export default class {
     s.neighbors.forEach((neighbor) => {
       const li = document.createElement("li");
       const spans1 = getSpans(s.pickedState, neighbor);
-      const spans2 = getSpans(neighbor, s.pickedState);
-      li.innerHTML = `${spans1}<br />${spans2}`;
+      const spans2 = getSpans2(neighbor, s.pickedState);
+      const missing = missingLetters(s.pickedState, neighbor);
+      if (missing.length > 0) {
+        li.innerHTML = `${spans2} which is only missing the ${
+          formatText(missing)
+        } in ${spans1}`;
+      } else {
+        li.innerHTML = `${spans2} which has all the letters in ${spans1}`;
+      }
       el.appendChild(li);
     });
-    this.api.forward(null, "count");
+    this.api.forward(null, "pick");
   }
 
   makeMap() {
