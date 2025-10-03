@@ -111,15 +111,16 @@ export default class {
     }
   }
 
+  count(_event, el) {
+    if (s.distance === 1) {
+      el.innerHTML = `${s.distance} Missing Letter`;
+    } else {
+      el.innerHTML = `${s.distance} Missing Letters`;
+    }
+  }
+
   neighbors(_event, el) {
     el.innerHTML = "";
-    const liOff = document.createElement("li");
-    if (s.distance === 0) {
-      liOff.innerHTML = `Nailed it`;
-    } else {
-      liOff.innerHTML = `Off by: ${s.distance}`;
-    }
-    el.appendChild(liOff);
     s.neighbors.forEach((neighbor) => {
       const li = document.createElement("li");
       const spans1 = getSpans(s.pickedState, neighbor);
@@ -127,6 +128,7 @@ export default class {
       li.innerHTML = `${spans1}<br />${spans2}`;
       el.appendChild(li);
     });
+    this.api.forward(null, "count");
   }
 
   makeMap() {
