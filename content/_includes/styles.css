@@ -1,0 +1,27 @@
+[data-receive=neighbors] {
+  min-height: 4rem;
+}
+
+.hit-neighbor {
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+.hit {
+  font-weight: 900;
+}
+
+.miss {
+  color: var(--warning);
+  text-decoration: underline;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.reportList {
+  list-style: none;
+  padding-left: 0;
+}
