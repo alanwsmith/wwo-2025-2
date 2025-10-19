@@ -1,16 +1,21 @@
-[! extends "_wrappers/main.html" !]
+[! extends "_wrappers/wrapper.html" !]
 
 [! block main !]
-<h4>Nearest (letter) Neighbors</h4>
-<p>Click a state to find the states that have the 
-  most number of matching letters in their names</p>
-<div class="two-columns">
-  <div>
-    <div class="xsmall-font" data-receive="pick"></div>
-    <ul data-receive="neighbors" class="default-top-margin small-font default-flow reportList"></ul>
-  </div>
-  <div id="container"></div>
+<div class="project-wrapper">
+[! include "_includes/main.html" !]
 </div>
+
+<h3>Details</h3>
+[! include "_includes/description.html" !]
+
+<h3>The HTML</h3>
+<pre class="code-block"><code>[@- highlight_file("_includes/main.html")|safe -@]</code></pre>
+
+<h3>The JavaScript</h3>
+<pre class="code-block"><code>[@- highlight_file("_includes/script.js")|safe -@]</code></pre>
+
+<h3>The CSS</h3>
+<pre class="code-block"><code>[@- highlight_file("_includes/styles.css")|safe -@]</code></pre>
 
 [! endblock !]
 
